@@ -180,12 +180,7 @@
 								<div class="review_box">
 									<h4>Add a Review</h4>
 									
-									@if(session('error'))
-										<div class="alert alert-danger">
-											{{ session('error') }}
-										</div>
 									
-									@endif
 									<form action="#/" class="form-contact form-review mt-3">
                                         <div class="form-group">
                                             <div class="rating-css">

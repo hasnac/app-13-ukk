@@ -6,14 +6,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
                     
-                    @if (session('success'))
-                        <p class="alert alert-success">{{ session('success') }}</p>
-                    @endif
-                    @if ($errors->any())
-                        @foreach ($errors->all() as $err)
-                            <p class="alert alert-danger">{{ $err }}</p>
-                        @endforeach
-                    @endif
+                    
                     <!-- End Logo -->
 
                     <div class="card mb-3">
@@ -29,13 +22,13 @@
                                 
                                 <div class="col-12">
                                     <label for="username" class="form-label">Username</label>
-                                    <input type="text" name="username" class="form-control" id="username" value="{{ old('username') }}" />
+                                    <input type="text" name="" class="form-control" id="username" value="" />
                                     
                                 </div>
 
                                 <div class="col-12">
                                     <label for="password" class="form-label">Password</label>
-                                    <input type="password" name="password" class="form-control" id="password" required />
+                                    <input type="password" name="" class="form-control" id="password" required />
                                     
                                 </div>
                                 <div class="col-12">

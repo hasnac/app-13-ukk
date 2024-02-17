@@ -26,28 +26,28 @@
                                 
                                 <div class="col-12">
                                     <label for="name" class="form-label">Your Name</label>
-                                    <input type="text" name="name" class="form-control"
-                                        value="{{ old('name') }}">
+                                    <input type="text" name="" class="form-control"
+                                        value="{">
                                 </div>
                                 <div class="col-12">
                                     <label for="nik" class="form-label">NIK</label>
-                                    <input type="text" name="nik" class="form-control"
-                                        value="{{ old('nik') }}">
+                                    <input type="text" name="" class="form-control"
+                                        value="">
                                 </div>
 
                                 <div class="col-12">
                                     <label for="username" class="form-label">Username</label>
-                                    <input type="text" name="username" class="form-control"
-                                        value="{{ old('username') }}">
+                                    <input type="text" name="" class="form-control"
+                                        value="">
                                 </div>
 
                                 <div class="col-12">
                                     <label for="password" class="form-label">Password</label>
-                                    <input type="password" name="password" class="form-control">
+                                    <input type="password" name="" class="form-control">
                                 </div>
                                 <div class="col-12">
                                     <label for="password" class="form-label">Password Confirmation</label>
-                                    <input type="password" class="form-control" name="password_confirm">
+                                    <input type="password" class="form-control" name="">
                                 </div>
 
                                 <div class="col-12">

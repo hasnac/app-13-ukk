@@ -6,7 +6,14 @@
             <div class="row justify-content-center">
                 <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
                     
-                    
+                    @if (session('success'))
+                        <p class="alert alert-success">{{ session('success') }}</p>
+                    @endif
+                    @if ($errors->any())
+                        @foreach ($errors->all() as $err)
+                            <p class="alert alert-danger">{{ $err }}</p>
+                        @endforeach
+                    @endif
                     <!-- End Logo -->
 
                     <div class="card mb-3">

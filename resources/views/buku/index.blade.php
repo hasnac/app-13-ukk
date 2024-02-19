@@ -22,7 +22,7 @@
             
             <div class="card-body">
                 <h5 class="card-title">Data Buku</h5>
-                <a class="btn btn-primary btn-sm mb-3" title="Create" href="" role="button"><i class="bi bi-plus-lg"></i>Create</a>
+                <a class="btn btn-primary btn-sm mb-3" title="Create" href="{{ url('buku/create') }}" role="button"><i class="bi bi-plus-lg"></i>Create</a>
                 <table class="table table-striped" id="table1">
                     <thead>
                         <tr>
@@ -37,11 +37,45 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php $i = $books->firstItem(); ?>
+                        @foreach ($books as $item)
+                            
+                        <tr>
+                            <td>{{ $i }}</td>
+                            <td>{{ $item->judul }}</td>
+                            <td>
+                                <img src="{{ Storage::url('public/books/' . $item->gambar) }}" style="width: 100px" alt="" srcset="">
+                            </td>
+                            <td>{{ $item->penerbit }}</td>
+                            <td>{{ $item->penulis }}</td>
+                            <td>{{ $item->kategori }}</td>
+                            <td>{{ $item->status }}</td>
+                            <td>
+                                <a href=''
+                                        class="btn btn-success btn-sm" title="Edit"><i
+                                            class="bi bi-eye"></i>
+                                </a>
+                                    
+                                <a href=''
+                                        class="btn btn-warning btn-sm" title="Edit"><i
+                                        class="bi bi-pencil-square"></i>
+                                </a>
+                                <form action="" class="d-inline"
+                                        method=""
+                                        onsubmit="return confirm('Yakin akan menghapus data ini?')">
+                                        @csrf
+                                        <button type="submit" title="Delete" name="submit"
+                                            class="btn btn-danger btn-sm"><i class="bi bi-trash3"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                        <?php $i++ ?>
+                        @endforeach
                         
                         
                     </tbody>
                 </table>
-                
+                {{ $books->links() }}
             </div>
         </div>
     </section>

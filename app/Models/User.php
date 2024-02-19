@@ -26,4 +26,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function pinjam()
+    {
+        return $this->belongsTo(peminjaman::class, 'id_user', 'id_user');
+    }
 }

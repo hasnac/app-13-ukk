@@ -48,12 +48,43 @@
                                         <fieldset class="form-group">
                                             <select class="form-select" id="username" name="username">
                                                 <option selected>Open this select</option>
-                                                <option value="user">user</option>
+                                                @foreach ($users as $user)
+                                                    
+                                                <option value="{{ $user->id_user }}">{{ $user->username }}</option>
+                                                @endforeach
+
+                                            </select>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-12 col-12">
+                                        <h6>Buku</h6>
+                                        
+                                        <fieldset class="form-group">
+                                            <select class="form-select" id="judul" name="judul">
+                                                <option selected>Open this select</option>
+                                                @foreach ($books as $book)
+                                                    
+                                                <option value="{{ $book->id_buku }}">{{ $book->judul }}</option>
+                                                @endforeach
 
                                             </select>
                                         </fieldset>
                                     </div>
     
+                                    <div class="col-md-12 col-12">
+                                        <div class="form-group mandatory">
+                                            <label for="first-name-column" class="form-label">jumlah pinjam</label>
+                                            <input
+                                                type="number"
+                                                id="jumlah"
+                                                class="form-control"
+                                                placeholder="Masukkan tanggal pinjam"
+                                                name="jumlah"
+                                                data-parsley-required="true"
+                                                
+                                            />
+                                        </div>
+                                    </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group mandatory">
                                             <label for="first-name-column" class="form-label">Tanggal pinjam</label>

@@ -63,4 +63,11 @@ class LoginController extends Controller
     
         return redirect('/');
     }
+    public function index()
+    {
+        $data = User::orderBy('id_user', 'asc')
+        ->where('role', 'user')
+        ->paginate(5);
+        return view('user.index', compact('data'));
+    }
 }

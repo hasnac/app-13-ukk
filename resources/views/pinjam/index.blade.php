@@ -36,21 +36,33 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <td>1</td>
-                        <td>hasna</td>   
-                        <td>laut</td>
-                        <td>dipinjam</td>
-                        <td>
-                            <button type="submit" class="btn btn-secondary">Sudah Dikembalikan</button>
-                                    
-                            <form action="#pinjam">
+                        <?php $i = $data->firstItem(); ?>
+                        @foreach ($data as $item)
+                            
+                            <tr>
+                                <td>{{ $i }}</td>
+                                <td>{{ $item->user->name }}</td>   
+                                <td>{{ $item->buku->judul }}</td>
+                                <td>{{ $item->status }}</td>
+                                <td>
+                                    @if ($item->status == 'kembali')
+                                        
+                                        <button type="submit" class="btn btn-secondary">Sudah Dikembalikan</button>
+                                    @else
+                                        
+                                        <form action="{{ route('pinjam.update', $item->id_pinjam) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-primary">Kembalikan</button>
+                                        </form>
+                                    @endif
                                             
-                                <button type="submit" class="btn btn-primary">Kembalikan</button>
-                            </form>
-                            @endif
-                            
-                            
-                        </td>
+                                    
+                                    
+                                    
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
                

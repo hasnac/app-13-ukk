@@ -3,6 +3,7 @@
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PinjamController;
 use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,7 @@ Route::get('/detailbook', function () {
 Route::group(['middleware'=> ['auth', 'checkrole:admin,staff']], function(){
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::resource('/buku', BukuController::class);
+    Route::resource('/pinjam', PinjamController::class);
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 Route::group(['middleware'=> ['auth', 'checkrole:user,admin,staff']], function(){

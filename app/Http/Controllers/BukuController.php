@@ -30,7 +30,33 @@ class BukuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'judul' => 'required',
+            'penulis' => 'required',
+            'penerbit' => 'required',
+            'tahunterbit' => 'required|max:4',
+            'gambar' => 'required|image|mimes:png,jpg,jpeg,svg',
+            'deskripsi' => 'required',
+            'stok' => 'required|min:0',
+            'kategori' => 'required',
+            'status' => 'required',
+
+        ]);
+        $gambar = $request->file('gambar');
+        $gambar->storeAs('public/books', $gambar->hashName());
+        buku::create([
+            'judul' => $request->judul,
+            'penulis' => $request->penulis,
+            'penerbit' => $request->penerbit,
+            'tahunterbit' => $request->tahunterbit,
+            'gambar' => $gambar->hashName(),
+            'deskripsi' => $request->deskripsi,
+            'stok' => $request->stok,
+            'kategori' => $request->kategori,
+            'status' => $request->status,
+
+        ]);
+        return redirect()->to('buku')->with('succes', 'Berhasil');
     }
 
     /**

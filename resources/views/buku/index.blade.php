@@ -51,7 +51,7 @@
                             <td>{{ $item->kategori }}</td>
                             <td>{{ $item->status }}</td>
                             <td>
-                                <a href=''
+                                <a href='{{ route('buku.edit', $item->id_buku) }}'
                                         class="btn btn-success btn-sm" title="Edit"><i
                                             class="bi bi-eye"></i>
                                 </a>
@@ -60,10 +60,11 @@
                                         class="btn btn-warning btn-sm" title="Edit"><i
                                         class="bi bi-pencil-square"></i>
                                 </a>
-                                <form action="" class="d-inline"
-                                        method=""
+                                <form action="{{ route('buku.destroy', $item->id_buku) }}" class="d-inline"
+                                        method="POST"
                                         onsubmit="return confirm('Yakin akan menghapus data ini?')">
                                         @csrf
+                                        @method('DELETE')
                                         <button type="submit" title="Delete" name="submit"
                                             class="btn btn-danger btn-sm"><i class="bi bi-trash3"></i></button>
                                 </form>

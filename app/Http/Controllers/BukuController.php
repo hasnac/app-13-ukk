@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\buku;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BukuController extends Controller
 {
@@ -72,7 +73,8 @@ class BukuController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $books = buku::findOrFail($id);
+        return view('buku.edit', compact('books'));
     }
 
     /**
@@ -80,7 +82,49 @@ class BukuController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->validate($request, [
+            'judul' => 'required',
+            'penulis' => 'required',
+            'penerbit' => 'required',
+            'tahunterbit' => 'required|max:4',
+            'gambar' => 'image|mimes:png,jpg,jpeg,svg',
+            'deskripsi' => 'required',
+            'stok' => 'required|min:0',
+            'kategori' => 'required',
+            'status' => 'required',
+        ]);
+        $books = buku::findOrFail($id);
+
+        if($request->hasFile('gambar')) {
+            $gambar = $request->file('gambar');
+            $gambar->storeAs('public/books', $gambar->hashName());
+
+            Storage::delete('public/books' . $books->gambar);
+
+            $books->update([
+                'judul' => $request->judul,
+                'penulis' => $request->penulis,
+                'penerbit' => $request->penerbit,
+                'tahunterbit' => $request->tahunterbit,
+                'gambar' => $gambar->hashName(),
+                'deskripsi' => $request->deskripsi,
+                'stok' => $request->stok,
+                'kategori' => $request->kategori,
+                'status' => $request->status,
+            ]);
+        }else{
+            $books->update([
+                'judul' => $request->judul,
+                'penulis' => $request->penulis,
+                'penerbit' => $request->penerbit,
+                'tahunterbit' => $request->tahunterbit,
+                'deskripsi' => $request->deskripsi,
+                'stok' => $request->stok,
+                'kategori' => $request->kategori,
+                'status' => $request->status,
+            ]);
+        }
+        return redirect()->to('buku')->with('succes', 'Berhasil');
     }
 
     /**
@@ -88,7 +132,10 @@ class BukuController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $books = buku::findOrFail($id);
+        Storage::delete('public/books/'. $books->gambar);
+        $books->delete();
+        return redirect()->to('buku')->with('succes', 'Berhasil');
     }
     
     public function listbook()
@@ -100,7 +147,8 @@ class BukuController extends Controller
     public function detailbook($id)
     {
         $books = buku::where('id_buku', $id)
-        ->get();
+        ->where('status', 'publish')
+        ->firstOrFail();
         return view('user.detail', compact('books'));
     }
 }

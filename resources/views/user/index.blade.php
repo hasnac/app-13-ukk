@@ -23,7 +23,7 @@
 
                 <div class="card-body">
                     <h5 class="card-title">Data Petugas</h5>
-                    <a class="btn btn-primary btn-sm mb-3" title="Create" href="" role="button"><i
+                    <a class="btn btn-primary btn-sm mb-3" title="Create" href="{{ url('register') }}" role="button"><i
                             class="bi bi-plus-lg"></i>Create</a>
                     <table class="table table-striped" id="table1">
                         <thead>

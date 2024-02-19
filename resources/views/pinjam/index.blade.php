@@ -22,7 +22,15 @@
             
             <div class="card-body">
                 <h5 class="card-title">Data Pinjam</h5>
-                <a class="btn btn-primary btn-sm mb-3" title="Create" href="{{ url('pinjam/create') }}" role="button"><i class="bi bi-plus-lg"></i>Create</a>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-between">
+                    
+                    <a class="btn btn-primary btn-sm mb-3" title="Create" href="{{ url('pinjam/create') }}" role="button"><i class="bi bi-plus-lg"></i>Create</a>
+                    @foreach ($data as $item)
+                        
+                    <a class="btn btn-secondary  btn-md mb-3" title="Create" href="{{ route('pinjam.show', $item->id_pinjam) }}">Generate Laporan</a>
+                    @endforeach
+
+                </div>
                 <table class="table table-striped" id="table1">
                     <thead>
                         <tr>
@@ -32,40 +40,44 @@
                             
                             <th>Status</th>
                             <th >Action</th>
+                            <th>receipt</th>
                             
                         </tr>
                     </thead>
                     <tbody>
                         <?php $i = $data->firstItem(); ?>
                         @foreach ($data as $item)
-                            
-                            <tr>
-                                <td>{{ $i }}</td>
-                                <td>{{ $item->user->name }}</td>   
-                                <td>{{ $item->buku->judul }}</td>
-                                <td>{{ $item->status }}</td>
+                        
+                        <tr>
+                            <td>{{ $i }}</td>
+                            <td>{{ $item->user->name }}</td>   
+                            <td>{{ $item->buku->judul }}</td>
+                            <td>{{ $item->status }}</td>
+                            <td>
+                                @if ($item->status == 'kembali')
+                                
+                                <button type="submit" class="btn btn-secondary">Sudah Dikembalikan</button>
+                                @else
+                                
+                                <form action="{{ route('pinjam.update', $item->id_pinjam) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-primary">Kembalikan</button>
+                                </form>
+                                @endif
+                                
+                                
+                                
+                                    
+                                </td>
                                 <td>
-                                    @if ($item->status == 'kembali')
-                                        
-                                        <button type="submit" class="btn btn-secondary">Sudah Dikembalikan</button>
-                                    @else
-                                        
-                                        <form action="{{ route('pinjam.update', $item->id_pinjam) }}" method="POST">
-                                            @csrf
-                                            @method('PUT')
-                                            <button type="submit" class="btn btn-primary">Kembalikan</button>
-                                        </form>
-                                    @endif
-                                            
-                                    
-                                    
-                                    
+                                    <a class="btn btn-secondary  btn-md mb-3" title="Create" href="{{ url('report' . $item->id_pinjam) }}">show</a>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-               
+               {{ $data->links() }}
             </div>
         </div>
     </section>

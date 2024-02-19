@@ -17,15 +17,15 @@
                         <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="user-menu d-flex">
                                 <div class="user-name text-end me-3">
-                                    <h6 class="mb-0 text-gray-600">Hasna Choirunnisa</h6>
-                                    <p class="mb-0 text-sm text-gray-600"> staff</p>
+                                    <h6 class="mb-0 text-gray-600">{{ Auth::user()->name }}</h6>
+                                    <p class="mb-0 text-sm text-gray-600"> {{ Auth::user()->role }}</p>
                                 </div>
                                 
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton" style="min-width: 11rem;">
                             <li>
-                                <h6 class="dropdown-header">Hello, hasnamicha</h6>
+                                <h6 class="dropdown-header">Hello, {{ Auth::user()->username }}</h6>
                             </li>
                             
                             {{-- <li><a class="dropdown-item" href="{{ route('password') }}"><i class="icon-mid bi bi-gear me-2"></i> --}}

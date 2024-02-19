@@ -21,15 +21,15 @@
           
         </div>
         <div class="container">
-          <h4>Peminjam : Hasna Choirunnisa</h4>
-          <h4>Start Date : 11/08/2024</h4>
-          <h4>End Date : 14/08/2024</h4>
+          <h4>Peminjam : {{ $books->user->name }}</h4>
+          <h4>Start Date : {{ $books->tanggal_pinjam }}</h4>
+          <h4>End Date : {{ $books->tanggal_kembali }}</h4>
           <hr class="dashed">
         </div>
         <div class="container">
           <div class="row">
-            <div class="col"><h5>Tereliye(Bumi)</h5></div>
-            <div class="col right"><h5>3</h5></div>
+            <div class="col"><h5>{{ $books->buku->judul }}</h5></div>
+            <div class="col right"><h5>{{ $books->jumlah }}</h5></div>
           </div>
           
           <hr class="dashed">

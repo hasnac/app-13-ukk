@@ -39,47 +39,37 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form action="" method='' enctype="multipart/form-data" class="form" data-parsley-validate>
-                                
+                            <form action="{{ route('buku.update', $books->id_buku) }}" method='POST' enctype="multipart/form-data" class="form" data-parsley-validate>
+                                @csrf
+                                @method('PUT')
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="form-group mandatory">
                                             <label for="first-name-column" class="form-label">Judul</label>
                                             <input
                                                 type="text"
-                                                id="title"
+                                                id="judul"
                                                 class="form-control"
                                                 placeholder="First Name"
-                                                name="title"
+                                                name="judul"
                                                 data-parsley-required="true"
-                                                value=""
+                                                value="{{ old('judul', $books->judul) }}"
                                             />
                                         </div>
                                     </div>
                                     
                                     
                                     <div class="col-md-12 col-12">
-                                        
-                                        <label for="picture" class="form-label">Deskripsi</label>
-                                        
-                                        <div class="form-group with-title mb-3">
-                                            <textarea class="form-control" id="" name=""  rows="3"></textarea>
-                                            <label>Your Content</label>
-                                        </div>
-                                        
-                                        
-                                    </div>
-                                    <div class="col-md-12 col-12">
                                         <div class="form-group mandatory">
                                             <label for="first-name-column" class="form-label">Penulis</label>
                                             <input
                                                 type="text"
-                                                id="title"
+                                                id="penulis"
                                                 class="form-control"
                                                 placeholder="First Name"
-                                                name="title"
+                                                name="penulis"
                                                 data-parsley-required="true"
-                                                value=""
+                                                value="{{ old('penulis', $books->penulis) }}"
                                             />
                                         </div>
                                     </div>
@@ -88,12 +78,12 @@
                                             <label for="first-name-column" class="form-label">Penerbit</label>
                                             <input
                                                 type="text"
-                                                id="title"
+                                                id="penerbit"
                                                 class="form-control"
                                                 placeholder="First Name"
-                                                name="title"
+                                                name="penerbit"
                                                 data-parsley-required="true"
-                                                value=""
+                                                value="{{ old('penerbit', $books->penerbit) }}"
                                             />
                                         </div>
                                     </div>
@@ -102,42 +92,70 @@
                                             <label for="first-name-column" class="form-label">Tahun terbit</label>
                                             <input
                                                 type="text"
-                                                id="title"
+                                                id="tahunterbit"
                                                 class="form-control"
                                                 placeholder="First Name"
-                                                name="title"
+                                                name="tahunterbit"
                                                 data-parsley-required="true"
-                                                value=""
+                                                value="{{ old('tahunterbit', $books->tahunterbit) }}"
                                             />
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
                                             <label for="picture" class="form-label">Picture</label>
-                                                <img src="" alt=""
+                                                {{-- <img src="" alt=""
                                                     class="img-preview img-fluid mb-3 col-sm-10 d-block"
                                                     style="width: 450px; height: 280px;">
-                                                <input type="hidden" name="oldImage" multiple value="">
+                                                <input type="hidden" name="oldImage" multiple value="1" {{ ($site->select_values=="1")? "selected" : "" }}> --}}
                                            
                                                 <img class="img-preview img-fluid mb-3 col-sm-10 d-block"
                                                     style="width: 450px; height: 280px;">
                                            
-                                            <input class="form-control" type="file" id="picture" name="picture"
+                                            <input class="form-control" type="file" id="gambar" name="gambar" 
                                             onchange="previewImage()">
                                         </div>
+                                    </div>
+                                    <div class="col-md-12 col-12">
+                                        
+                                        <label for="picture" class="form-label">Deskripsi</label>
+                                        
+                                        <div class="form-group with-title mb-3">
+                                            <textarea class="form-control" id="deskripsi" name="deskripsi"  rows="3">{{ old('deskripsi', $books->deskripsi) }}</textarea>
+                                            <label>Your Content</label>
+                                        </div>
+                                        
+                                        
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group mandatory">
                                             <label for="first-name-column" class="form-label">Stok</label>
                                             <input
-                                                type="text"
-                                                id="title"
+                                                type="number"
+                                                id="stok"
                                                 class="form-control"
                                                 placeholder="First Name"
-                                                name="title"
+                                                name="stok"
                                                 data-parsley-required="true"
-                                                value=""
+                                                value="{{ old('stok', $books->stok) }}"
                                             />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-12">
+                                        <h6>Input group append</h6>
+                                        <div class="input-group mb-3">
+                                            <select class="form-select" id="kategori" name="kategori">
+                                                <option selected>Open this select menu</option>
+                                                    
+                                                    <option value="fiksi" {{ ($books->kategori=="fiksi")? "selected" : "" }}>
+                                                        Fiksi
+                                                    </option>
+                                                    <option value="non" {{ ($books->kategori=="non")? "selected" : "" }}>
+                                                        Non Fiksi
+                                                    </option>
+                                                
+                                            </select>
+                                            <label class="input-group-text" for="kategori">Kategori</label>
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-12">
@@ -145,7 +163,7 @@
                                         <ul class="list-unstyled mb-0">
                                             <li class="d-inline-block me-2 mb-1">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="" value="" >
+                                                    <input class="form-check-input" type="radio" name="status" id="status" value="draft"  {{ ($books->status=="draft")? "checked" : "" }}  >
                                                     <label class="form-check-label" for="status">
                                                         Draft
                                                     </label>
@@ -153,7 +171,7 @@
                                             </li>
                                             <li class="d-inline-block me-2 mb-1">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="" value="" >
+                                                    <input class="form-check-input" type="radio" name="status" id="status" value="publish"  {{ ($books->status=="publish")? "checked" : "" }} >
                                                     <label class="form-check-label" for="status">
                                                         Publish
                                                     </label>
@@ -164,21 +182,6 @@
                                         
                                         
                                     </div>                          
-                                    <div class="col-md-12 col-12">
-                                        <h6>Input group append</h6>
-                                        <div class="input-group mb-3">
-                                            <select class="form-select" id="keyword" name="keyword">
-                                                <option selected>Open this select menu</option>
-                                                    
-                                                    <option value=""
-                                                        >
-                                                        
-                                                    </option>
-                                                
-                                            </select>
-                                            <label class="input-group-text" for="keyword">Keyword</label>
-                                        </div>
-                                    </div>
                                 </div>  
                                 <div class="row">
                                     <div class="col-12 d-flex justify-content-end">

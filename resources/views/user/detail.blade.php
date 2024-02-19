@@ -43,31 +43,31 @@
 					</div>
 					<div class="col-lg-5 offset-lg-1">
 						<div class="s_product_text">
-							<h3>Faded SkyBlu Denim Jeans</h3>
-							<h2>$149.99</h2>
-							<ul class="list">
+							<h3>{{ $books->judul }}</h3>
+							
+							<ul class="list mb-4">
 								<li>
-									<a class="active" href="#"><span>Category</span> : Household</a>
+									<a class="active" href="#"><span>Category</span> : {{ $books->kategori }}</a>
 								</li>
 								<li>
-									<a href="#"><span>Availibility</span> : In Stock</a>
+									<a href="#"><span>Availibility</span> : {{ $books->stok }}</a>
+								</li>
+								<li>
+									<a href="#"><span>Penulis</span> : {{ $books->penulis }}</a>
+								</li>
+								<li>
+									<a href="#"><span>Penerbit</span> : {{ $books->penerbit }}</a>
+								</li>
+								<li>
+									<a href="#"><span>Tahun Terbit</span> : {{ $books->tahunterbit }}</a>
 								</li>
 							</ul>
-							<p>
-								Mill Oil is an innovative oil filled radiator with the most modern technology. If you are looking for something that can make your interior look awesome, and at the same time give you the pleasant warm feeling during the
-								winter.
-							</p>
+							
 							<div class="product_count">
-								<label for="qty">Quantity:</label>
-
-								<input type="text" name="qty" id="sst" size="2" maxlength="12" value="1" title="Quantity:" class="input-text qty" />
-
+								
 								<a class="button primary-btn" href="#">Add to Cart</a>
 							</div>
-							<div class="card_area d-flex align-items-center">
-								<a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
-								<a class="icon_btn" href="#"><i class="lnr lnr lnr-heart "></i></a>
-							</div>
+							
 						</div>
 					</div>
 				</div>

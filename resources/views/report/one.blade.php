@@ -27,16 +27,22 @@
               </tr>
             </thead>
             <tbody>
+              <?php $i= $borrowing->firstItem();?>
+              @foreach ($borrowing as $item)
+                  
               <tr>
-                <th scope="row">1</th>
-                <td>Hasna Choirunnisa</td>
-                <td>Tereliye</td>
-                <td>1</td>
-                <td>11/08/2024</td>
-                <td>14/08/2024</td>
-              
+                <td scope="row">{{ $i }}</td>
+                <td>{{ $item->user->name }}</td>
+                <td>{{ $item->buku->judul }}</td>
+                <td>{{ $item->jumlah }}</td>
+                <td>{{ $item->tanggal_pinjam }}</td>
+                <td>{{ $item->tanggal_kembali }}</td>
+              </tr>
+              <?php $i++ ?>
+              @endforeach
             </tbody>
         </table>
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script>

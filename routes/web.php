@@ -32,6 +32,7 @@ Route::group(['middleware'=> ['auth', 'checkrole:admin,staff']], function(){
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::resource('/buku', BukuController::class);
     Route::resource('/pinjam', PinjamController::class);
+    Route::get('/report{id}', [PinjamController::class, 'generate']);
     Route::get('/user', [LoginController::class, 'index']);
     Route::get('/petugas', [LoginController::class, 'petugas']);
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -51,9 +52,4 @@ Route::get('/koleksi', function () {
 
 
 
-Route::get('/report', function () {
-    return view('report.index');
-});
-Route::get('report/all', function () {
-    return view('report.one');
-});
+

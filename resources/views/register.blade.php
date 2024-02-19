@@ -21,33 +21,43 @@
                                 <p class="text-center small">Enter your username & password to login</p>
                             </div>
 
-                            <form class="row g-3 needs-validation" action="" method="">
+                            <form class="row g-3 needs-validation" action="{{ route('register.action') }}" method="POST">
                                 @csrf
                                 
                                 <div class="col-12">
                                     <label for="name" class="form-label">Your Name</label>
-                                    <input type="text" name="" class="form-control"
-                                        value="{">
+                                    <input type="text" name="name" class="form-control"
+                                        value="{{ old('name') }}">
                                 </div>
                                 <div class="col-12">
                                     <label for="nik" class="form-label">NIK</label>
-                                    <input type="text" name="" class="form-control"
-                                        value="">
+                                    <input type="text" name="nik" class="form-control"
+                                        value="{{ old('nik') }}">
                                 </div>
 
                                 <div class="col-12">
                                     <label for="username" class="form-label">Username</label>
-                                    <input type="text" name="" class="form-control"
-                                        value="">
+                                    <input type="text" name="username" class="form-control"
+                                        value="{{ old('username') }}">
+                                </div>
+                                <div class="col-12">
+                                    <label for="alamat" class="form-label">alamat</label>
+                                    <input type="text" name="alamat" class="form-control"
+                                        value="{{ old('alamat') }}">
+                                </div>
+                                <div class="col-12">
+                                    <label for="telfon" class="form-label">telfon</label>
+                                    <input type="text" name="telfon" class="form-control"
+                                        value="{{ old('telfon') }}">
                                 </div>
 
                                 <div class="col-12">
                                     <label for="password" class="form-label">Password</label>
-                                    <input type="password" name="" class="form-control">
+                                    <input type="password" name="password" class="form-control">
                                 </div>
                                 <div class="col-12">
                                     <label for="password" class="form-label">Password Confirmation</label>
-                                    <input type="password" class="form-control" name="">
+                                    <input type="password" class="form-control" name="password_confirm">
                                 </div>
 
                                 <div class="col-12">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BukuController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ViewController;
@@ -16,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('landing');
-});
+Route::get('/', [ViewController::class, 'index']);
 Route::get('/listbook', function () {
     return view('user.list_book');
 });
@@ -28,20 +27,24 @@ Route::get('listbook/fiksi', function () {
 Route::get('/detailbook', function () {
     return view('user.detail');
 });
-Route::get('/login', function () {
-    return view('login');
+Route::group(['middleware'=> ['auth', 'checkrole:admin,staff']], function(){
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::resource('/buku', BukuController::class);
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
-Route::get('/register', function () {
-    return view('register');
-});
+Route::group(['middleware'=> ['auth', 'checkrole:user,admin,staff']], function(){
 
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+});
+Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/login', [LoginController::class, 'login_action'])->name('login.action');
+Route::get('/register', [LoginController::class, 'create'])->name('register');
+Route::post('/register', [LoginController::class, 'register'])->name('register.action');
 Route::get('/koleksi', function () {
     return view('user.koleksi');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+
 
 Route::get('/report', function () {
     return view('report.index');

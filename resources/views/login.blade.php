@@ -17,18 +17,18 @@
                                 <p class="text-center small">Enter your username & password to login</p>
                             </div>
 
-                            <form class="row g-3 needs-validation" action="" method="">
+                            <form class="row g-3 needs-validation" action="{{ route('login.action') }}" method="POST">
                                 @csrf
                                 
                                 <div class="col-12">
                                     <label for="username" class="form-label">Username</label>
-                                    <input type="text" name="" class="form-control" id="username" value="" />
+                                    <input type="text" name="username" class="form-control" id="username" value="{{ old('username') }}" />
                                     
                                 </div>
 
                                 <div class="col-12">
                                     <label for="password" class="form-label">Password</label>
-                                    <input type="password" name="" class="form-control" id="password" required />
+                                    <input type="password" name="password" class="form-control" id="password" required />
                                     
                                 </div>
                                 <div class="col-12">

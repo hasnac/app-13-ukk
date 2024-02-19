@@ -90,4 +90,17 @@ class BukuController extends Controller
     {
         //
     }
+    
+    public function listbook()
+    {
+        $books = buku::where('status', 'publish')
+        ->get();
+        return view('user.list_book', compact('books'));
+    }
+    public function detailbook($id)
+    {
+        $books = buku::where('id_buku', $id)
+        ->get();
+        return view('user.detail', compact('books'));
+    }
 }

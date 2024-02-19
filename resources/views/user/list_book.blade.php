@@ -40,23 +40,27 @@
             <div class="row g-4">
                     <div class="col-md-12">
                         <div class="text-center">
+                            {{-- @if ($books->status != 'publish')
+                                
                             <h1>Product is not found</h1>
                             <a class="btn btn-red" href="{{ url('/') }}">Back</a>
+                            @endif --}}
                         </div>
                     </div>
                 
-                    
+                    @foreach ($books as $item)
                         <div class="col-lg-3 wow fadeIn" data-wow-delay="0.3s">
                             <div class="case-item position-relative overflow-hidden rounded mb-2">
-                                <img class="img-fluid" src="{{ asset('assetsus/img/buku1.jpeg') }}" alt="">
-                                <a class="case-overlay text-decoration-none" href="">
-                                    <small>tereliye</small>
-                                    <h5 class="lh-base text-white mb-3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae, explicabo!
+                                <img class="img-fluid" src="{{ Storage::url('public/books/' . $item->gambar) }}" alt="">
+                                <a class="case-overlay text-decoration-none" href="{{ url('listbook/detail', $item->id_buku) }}">
+                                    <small>{{ $item->judul }}</small>
+                                    <h5 class="lh-base text-white mb-3">{{ Str::limit($item->deskripsi, 50)}}
                                     </h5>
                                     <span class="btn btn-square btn-red"><i class="fa fa-arrow-right"></i></span>
                                 </a>
                             </div>
                         </div>
+                    @endforeach
             </div>
         </div>
     </div>

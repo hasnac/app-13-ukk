@@ -70,4 +70,11 @@ class LoginController extends Controller
         ->paginate(5);
         return view('user.index', compact('data'));
     }
+    public function petugas()
+    {
+        $data = User::orderBy('id_user', 'asc')
+        ->where('role', 'staff')
+        ->paginate(5);
+        return view('petugas.index', compact('data'));
+    }
 }

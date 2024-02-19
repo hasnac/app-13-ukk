@@ -26,18 +26,45 @@
                 <table class="table table-striped" id="table1">
                     <thead>
                         <tr>
-                            <th >#</th>
-                            <th >Nama</th>
-                            <th >Username</th>
-                            <th >Role</th>
-                            <th >Action</th>
-                            
+                            <th>#</th>
+                            <th>Nama</th>
+                            <th>Username</th>
+                            <th>Role</th>
+                            <th>Action</th>
+
                         </tr>
                     </thead>
                     <tbody>
-                        
+                        <?php $i = $data->firstItem(); ?>
+                        @foreach ($data as $item)
+                            <tr>
+                                <th scope="row">{{ $i }}</th>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->username }}</td>
+                                <td>{{ $item->role }}</td>
+
+                                <td>
+                                    <a href='' class="btn btn-success btn-sm" title="Edit"><i
+                                            class="bi bi-eye"></i>
+                                    </a>
+
+                                    <a href='' class="btn btn-warning btn-sm" title="Edit"><i
+                                            class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <form action="" class="d-inline" method=""
+                                        onsubmit="return confirm('Yakin akan menghapus data ini?')">
+                                        @csrf
+                                        <button type="submit" title="Delete" name="submit"
+                                            class="btn btn-danger btn-sm"><i class="bi bi-trash3"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <?php $i++ ?>
+                        @endforeach
+
                     </tbody>
                 </table>
+`                   {{ $data->links() }}
                 
             </div>
         </div>

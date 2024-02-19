@@ -32,10 +32,13 @@ Route::group(['middleware'=> ['auth', 'checkrole:admin,staff']], function(){
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::resource('/buku', BukuController::class);
     Route::resource('/pinjam', PinjamController::class);
+    Route::get('/user', [LoginController::class, 'index']);
+    Route::get('/petugas', [LoginController::class, 'petugas']);
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 Route::group(['middleware'=> ['auth', 'checkrole:user,admin,staff']], function(){
-
+    Route::get('/listbook', [BukuController::class, 'listbook']);
+    Route::get('listbook/detail{id}', [BukuController::class, 'detailbook']);
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 Route::get('/login', [LoginController::class, 'login'])->name('login');

@@ -66,13 +66,13 @@
               
                     
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="{{ url('user') }}" class="sidebar-link">
                         <i class="bi bi-file-earmark-medical-fill"></i>
-                        <span>Data petugas</span>
+                        <span>Data User</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="{{ url('petugas') }}" class="sidebar-link">
                         <i class="bi bi-file-earmark-medical-fill"></i>
                         <span>Data petugas</span>
                     </a>

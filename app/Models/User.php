@@ -30,4 +30,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo(peminjaman::class, 'id_user', 'id_user');
     }
+    public function koleksi()
+    {
+        return $this->hasMany(koleksi::class, 'id_user', 'id_user');
+    }
 }

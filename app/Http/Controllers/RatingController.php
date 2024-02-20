@@ -33,6 +33,7 @@ class RatingController extends Controller
             $message = 'Kamu sudah pernah rating';
             redirect()->back()->with('error', $message);
         }
+       
         $request->validate([
             'id_buku' => 'required|exists:bukus,id_buku',
             'ulasan' => 'required',

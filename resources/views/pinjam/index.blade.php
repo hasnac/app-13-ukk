@@ -25,10 +25,10 @@
                 <div class="d-grid gap-2 d-md-flex justify-content-md-between">
                     
                     <a class="btn btn-primary btn-sm mb-3" title="Create" href="{{ url('pinjam/create') }}" role="button"><i class="bi bi-plus-lg"></i>Create</a>
-                    @foreach ($data as $item)
+                    
                         
-                    <a class="btn btn-secondary  btn-md mb-3" title="Create" href="{{ route('pinjam.show', $item->id_pinjam) }}">Generate Laporan</a>
-                    @endforeach
+                    <a class="btn btn-secondary  btn-md mb-3" title="Create" href="{{ url('/report/all') }}">Generate Laporan</a>
+                
 
                 </div>
                 <table class="table table-striped" id="table1">
@@ -50,7 +50,7 @@
                         
                         <tr>
                             <td>{{ $i }}</td>
-                            <td>{{ $item->user->name }}</td>   
+                            <td>{{ $item->user->name ?? '' }}</td>   
                             <td>{{ $item->buku->judul }}</td>
                             <td>{{ $item->status }}</td>
                             <td>
@@ -74,6 +74,7 @@
                                     <a class="btn btn-secondary  btn-md mb-3" title="Create" href="{{ url('report' . $item->id_pinjam) }}">show</a>
                                 </td>
                             </tr>
+                            <?php $i++?>
                         @endforeach
                     </tbody>
                 </table>

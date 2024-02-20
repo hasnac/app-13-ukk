@@ -31,7 +31,7 @@
 					<div class="col-lg-6">
 						<div class="text center">
 							
-							<img class="" src="{{ asset('assetsus/img/buku1.jpeg') }}" alt="" width="70%"/>
+							<img src="{{ Storage::url('public/books/' . $books->gambar) }}" style="width: 70%" alt="" srcset="">
 							
 							<!-- <div class="single-prd-item">
 							<img class="img-fluid" src="img/category/s-p1.jpg" alt="">
@@ -62,6 +62,11 @@
 									<a href="#"><span>Tahun Terbit</span> : {{ $books->tahunterbit }}</a>
 								</li>
 							</ul>
+							@if (session('error'))
+                                <div class="alert alert-danger" role="alert">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
 							
 							@if ($koleksi)
 								<form action="{{ route('koleksi.destroy', $books->id_buku) }}" method="post">
@@ -155,16 +160,22 @@
 							</div>
 							<div class="col-lg-6">
 								<div class="review_box">
+									@if (session('user'))
+										<div class="alert alert-danger" role="alert">
+											{{ session('user') }}
+										</div>
+									@endif
 									<h4>Add a Review</h4>
 									
 									
 									<form action="{{ route('rating.store') }}" method="POST" class="form-contact form-review mt-3">
 										@csrf
 										@if ($message = Session::get('error'))
-										<div class="alert alert-success">
+										<div class="alert alert-danger">
 											<p>{{ $message }}</p>
 										</div>
 										@endif
+										
                                         <div class="form-group">
 											<input type="hidden" name="id_user" value="{{ auth()->user()->id_user }}">
 											<input type="hidden" name="id_buku" value="{{ $books->id_buku }}">

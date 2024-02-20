@@ -34,33 +34,38 @@
                         <th scope="col">Picture</th>
                         <th scope="col">Title</th>
                         <th scope="col">Kategori</th>
+                        <th scope="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
+                      <?php $i= $data->firstItem();?>
+                      @foreach ($data as $item)
+                          
                       <tr>
-                        <th scope="row">1</th>
-                        <td><img src="{{ asset('assetsus/img/buku1.jpeg') }}" alt="" width="100"></td>
-                        <td>Tereliye</td>
-                        <td>Fiksi</td>
+                        <th scope="row">{{ $i }}</th>
+                        <td>
+                          <img src="{{ Storage::url('public/books/' . $item->buku->gambar) }}" style="width: 100px" alt="" srcset="">
+                        </td>
+                        <td>{{ $item->buku->judul }}</td>
+                        <td>{{ $item->buku->kategori }}</td>
+                        <td>
+                          <form action="{{ route('koleksi.destroy', $item->id_buku) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <input type="hidden" name="id_user" value="{{ auth()->user()->id_user }}">
+                            <input type="hidden" name="id_buku" value="{{ $item->id_buku }}">
+                            <button type="submit" class="btn btn-danger">Remove from Collection</button>
+                          </form>
+                        </td>
                       </tr>
-                      
+                      @endforeach
+                      <?php $i++ ?>
                     </tbody>
                   </table>
               </div>
           </div>
-<!--================End Cart Area =================-->
     </div>
-    <!-- Case End -->
-    
-    
-
-
-
-
-    
-
-
-    
+     
 @endsection
 @section('script')
     

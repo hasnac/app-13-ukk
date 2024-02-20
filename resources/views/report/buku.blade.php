@@ -14,29 +14,32 @@
   </head>
   <body>
     <div class="container py-5">
-        <h2 class="text-center mb-4">Data Peminjaman Buku</h2>
+        <h2 class="text-center mb-4">Data Buku</h2>
         <table class="table">
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Peminjam</th>
-                <th scope="col">Buku</th>
-                <th scope="col">Jumlah</th>
-                <th scope="col">Start date</th>
-                <th scope="col">End date</th>
+                <th scope="col">ID buku</th>
+                <th scope="col">Gambar</th>
+                <th scope="col">Judul</th>
+                <th scope="col">Kategori</th>
+                <th scope="col">Stok</th>
               </tr>
             </thead>
             <tbody>
               <?php $i= 1?>
-              @foreach ($borrowing as $item)
+              @foreach ($book as $item)
                   
               <tr>
                 <td scope="row">{{ $i }}</td>
-                <td>{{ $item->user->name ?? '' }}</td>
-                <td>{{ $item->buku->judul ?? ''}}</td>
-                <td>{{ $item->jumlah }}</td>
-                <td>{{ $item->tanggal_pinjam }}</td>
-                <td>{{ $item->tanggal_kembali }}</td>
+                <td>{{ $item->id_buku }}</td>
+                <td>
+                    <img src="{{ Storage::url('public/books/' . $item->gambar) }}" style="width: 100px" alt="" srcset="">
+
+                </td>
+                <td>{{ $item->judul }}</td>
+                <td>{{ $item->kategori }}</td>
+                <td>{{ $item->stok }}</td>
               </tr>
               <?php $i++ ?>
               @endforeach

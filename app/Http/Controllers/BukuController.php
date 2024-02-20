@@ -67,7 +67,7 @@ class BukuController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**
@@ -140,9 +140,15 @@ class BukuController extends Controller
         return redirect()->to('buku')->with('succes', 'Berhasil');
     }
     
-    public function listbook()
+    public function listbook(Request $request)
     {
+        $search = $request->search;
         $books = buku::where('status', 'publish')
+        ->when(strlen($search), function ($query) use ($search){
+            $query->where('judul','like',"%" . $search . "%")
+            ->orWhere('kategori','like',"%" . $search . "%")
+            ->orWhere('penulis','like',"%" . $search . "%");
+        })
         ->get();
         return view('user.list_book', compact('books'));
     }
@@ -174,5 +180,10 @@ class BukuController extends Controller
         ->get();
         return view('user.non-fiksi', compact('books'));
 
+    }
+    public function all_book()
+    {
+        $book = buku::get();
+        return view('report.buku', compact('book'));
     }
 }

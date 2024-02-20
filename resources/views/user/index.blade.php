@@ -47,9 +47,10 @@
 
                                     <td>
                                         
-                                        <form action="" class="d-inline" method=""
+                                        <form action="{{ route('petugas.destroy', $item->id_user) }}" class="d-inline" method="POST"
                                             onsubmit="return confirm('Yakin akan menghapus data ini?')">
                                             @csrf
+                                            @method('DELETE')
                                             <button type="submit" title="Delete" name="submit"
                                                 class="btn btn-danger btn-sm"><i class="bi bi-trash3"></i></button>
                                         </form>

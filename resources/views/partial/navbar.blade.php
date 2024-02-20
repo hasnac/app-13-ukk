@@ -60,9 +60,12 @@
         <li class="nav-item">
           <a class="nav-link {{ Request::is('listbook') ? 'active' : '' }}" href="{{ url('listbook') }}">Books</a>
         </li>
+        @if (auth()->user()->role == 'user')
+            
         <li class="nav-item">
           <a class="nav-link {{ Request::is('koleksi') ? 'active' : '' }}" href="{{ url('koleksi') }}">Collection</a>
         </li>
+        @endif
         @if (auth()->user())
             
         <li class="nav-item dropdown">
@@ -71,9 +74,8 @@
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
-            <li><a class="dropdown-item" href="{{ route('change.password') }}"><i class="icon-mid bi bi-gear me-2"></i> 
+            <li><a class="dropdown-item" href="{{ route('change.password') }}"> 
               Change Password</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
         @endif

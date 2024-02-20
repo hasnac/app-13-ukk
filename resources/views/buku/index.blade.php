@@ -22,7 +22,15 @@
             
             <div class="card-body">
                 <h5 class="card-title">Data Buku</h5>
-                <a class="btn btn-primary btn-sm mb-3" title="Create" href="{{ url('buku/create') }}" role="button"><i class="bi bi-plus-lg"></i>Create</a>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-between">
+                    
+                    <a class="btn btn-primary btn-sm mb-3" title="Create" href="{{ url('buku/create') }}" role="button"><i class="bi bi-plus-lg"></i>Create</a>
+                    
+                        
+                    <a class="btn btn-secondary  btn-md mb-3" title="Create" href="{{ url('/all') }}">Generate Laporan</a>
+                    
+
+                </div>                
                 <table class="table table-striped" id="table1">
                     <thead>
                         <tr>
@@ -50,13 +58,8 @@
                             <td>{{ $item->penulis }}</td>
                             <td>{{ $item->kategori }}</td>
                             <td>{{ $item->status }}</td>
-                            <td>
+                            <td>    
                                 <a href='{{ route('buku.edit', $item->id_buku) }}'
-                                        class="btn btn-success btn-sm" title="Edit"><i
-                                            class="bi bi-eye"></i>
-                                </a>
-                                    
-                                <a href=''
                                         class="btn btn-warning btn-sm" title="Edit"><i
                                         class="bi bi-pencil-square"></i>
                                 </a>

@@ -25,11 +25,12 @@
         <div class="container ">
             {{-- Search  --}}
             <div class="coba position-relative w-100 mt-3 mb-2">
-                <form action="" method="get"></form>
-                <input class="form-control  rounded-pill w-100 ps-4 pe-5" type="text"
-                    placeholder="Search your book..." style="height: 48px;">
-                <button type="button" class="btn shadow-none position-absolute top-0 end-0  me-2"><i
-                        class="bi bi-search text-primary fs-4"></i></button>
+                <form action="{{ route('listbook') }}" method="get">
+                    <input name="search" class="form-control  rounded-pill w-100 ps-4 pe-5" type="text"
+                        placeholder="Search your book..." style="height: 48px;">
+                    <button type="submit" class="btn shadow-none position-absolute top-0 end-0  me-2"><i
+                            class="bi bi-search text-primary fs-4"></i></button>
+                </form>
             </div>
             <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
                 <div class="product_description_area">

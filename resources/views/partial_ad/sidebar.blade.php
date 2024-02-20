@@ -49,15 +49,15 @@
             <ul class="menu">
                 <li class="sidebar-title">Menu</li>
 
-                <li class="sidebar-item active">
-                    <a href="index.html" class="sidebar-link">
+                <li class="sidebar-item {{ Request::is('dashboard') ? 'active' : '' }}">
+                    <a href="{{ url('dashboard') }}" class="sidebar-link">
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
 
                 <li class="sidebar-title">Forms &amp; Tables</li>
-                <li class="sidebar-item">
+                <li class="sidebar-item {{ Request::is('buku') ? 'active' : '' }}">
                     <a href="{{ url('buku') }}" class="sidebar-link">
                         <i class="bi bi-file-earmark-medical-fill"></i>
                         <span>Data buku</span>
@@ -65,19 +65,22 @@
                 </li>
               
                     
-                <li class="sidebar-item">
+                <li class="sidebar-item {{ Request::is('user') ? 'active' : '' }}">
                     <a href="{{ url('user') }}" class="sidebar-link">
                         <i class="bi bi-file-earmark-medical-fill"></i>
                         <span>Data User</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a href="{{ url('petugas') }}" class="sidebar-link">
-                        <i class="bi bi-file-earmark-medical-fill"></i>
-                        <span>Data petugas</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
+                @if (auth()->user()->role == 'admin')
+                    
+                    <li class="sidebar-item {{ Request::is('petugas') ? 'active' : '' }}">
+                        <a href="{{ url('petugas') }}" class="sidebar-link">
+                            <i class="bi bi-file-earmark-medical-fill"></i>
+                            <span>Data petugas</span>
+                        </a>
+                    </li>
+                @endif
+                <li class="sidebar-item {{ Request::is('pinjam') ? 'active' : '' }}">
                     <a href="{{ url('pinjam') }}" class="sidebar-link">
                         <i class="bi bi-file-earmark-medical-fill"></i>
                         <span>Data pinjam</span>

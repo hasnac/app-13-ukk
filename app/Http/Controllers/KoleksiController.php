@@ -38,6 +38,9 @@ class KoleksiController extends Controller
             'id_buku' => 'required|exists:bukus,id_buku',
         ]);
         $user = auth()->user();
+        if($user->role != 'user'){
+            return redirect()->back()->with('error', 'Only user');
+        }
         koleksi::create([
             'id_user' => $user->id_user,
             'id_buku' => $request->id_buku,

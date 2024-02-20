@@ -62,10 +62,7 @@ class PinjamController extends Controller
      */
     public function show(string $id)
     {
-        $borrowing = peminjaman::with(['user','buku'])
-        ->findOrFail($id)
-        ->paginate();
-        return view('report.one', compact('borrowing'));
+       
     }
 
     /**
@@ -100,5 +97,11 @@ class PinjamController extends Controller
         $books = peminjaman::where('id_pinjam', $id)
         ->firstOrFail();
         return view('report.index', compact('books'));
+    }
+    public function all()
+    {
+        $borrowing = peminjaman::with(['user','buku'])
+        ->get();
+        return view('report.one', compact('borrowing'));
     }
 }

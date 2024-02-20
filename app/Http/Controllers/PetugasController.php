@@ -86,6 +86,6 @@ class PetugasController extends Controller
         $user = User::findOrFail($id);
         
         $user->delete();
-        return redirect()->to('petugas')->with('succes', 'Berhasil');
+        return redirect()->to('/dashboard')->with('succes', 'Berhasil');
     }
 }

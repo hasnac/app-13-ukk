@@ -26,14 +26,16 @@ Route::get('/', [ViewController::class, 'index']);
 Route::group(['middleware'=> ['auth', 'checkrole:admin,staff']], function(){
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::resource('/buku', BukuController::class);
+    Route::get('/all', [BukuController::class, 'all_book']);
     Route::resource('/pinjam', PinjamController::class);
     Route::get('/report{id}', [PinjamController::class, 'generate']);
+    Route::get('/report/all', [PinjamController::class, 'all']);
     Route::get('/user', [LoginController::class, 'index']);
     Route::resource('/petugas', PetugasController::class);
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 Route::group(['middleware'=> ['auth', 'checkrole:user,admin,staff']], function(){
-    Route::get('/listbook', [BukuController::class, 'listbook']);
+    Route::get('/listbook', [BukuController::class, 'listbook'])->name('listbook');
     Route::get('listbook/fiksi', [BukuController::class, 'fiksi']);
     Route::get('listbook/non-fiksi', [BukuController::class, 'non']);
     Route::resource('/koleksi', KoleksiController::class);

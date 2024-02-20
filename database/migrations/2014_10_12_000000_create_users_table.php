@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('alamat', 2000);
             $table->string('telfon');
             $table->string('password');
-            $table->enum('role', ['admin', 'staff', 'user']);
+            $table->enum('role', ['admin', 'staff', 'user'])->default('user');
             $table->timestamps();
         });
     }

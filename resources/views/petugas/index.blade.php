@@ -44,16 +44,17 @@
                                 <td>{{ $item->role }}</td>
 
                                 <td>
-                                    <a href='' class="btn btn-success btn-sm" title="Edit"><i
+                                    {{-- <a href='' class="btn btn-success btn-sm" title="Edit"><i
                                             class="bi bi-eye"></i>
-                                    </a>
+                                    </a> --}}
 
-                                    <a href='' class="btn btn-warning btn-sm" title="Edit"><i
+                                    <a href='{{ route('petugas.edit', $item->id_user) }}' class="btn btn-warning btn-sm" title="Edit"><i
                                             class="bi bi-pencil-square"></i>
                                     </a>
-                                    <form action="" class="d-inline" method=""
+                                    <form action="{{ route('petugas.destroy', $item->id_user) }}" class="d-inline" method="POST"
                                         onsubmit="return confirm('Yakin akan menghapus data ini?')">
                                         @csrf
+                                        @method('DELETE')
                                         <button type="submit" title="Delete" name="submit"
                                             class="btn btn-danger btn-sm"><i class="bi bi-trash3"></i></button>
                                     </form>

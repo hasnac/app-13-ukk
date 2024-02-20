@@ -34,4 +34,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(koleksi::class, 'id_user', 'id_user');
     }
+    public function rating()
+    {
+        return $this->hasMany(rating::class, 'id_user', 'id_user');
+    }
 }

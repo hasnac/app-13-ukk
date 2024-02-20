@@ -63,10 +63,25 @@
 								</li>
 							</ul>
 							
-							<div class="product_count">
+							@if ($koleksi)
+								<form action="{{ route('koleksi.destroy', $books->id_buku) }}" method="post">
+									@csrf
+									@method('DELETE')
+									<input type="hidden" name="id_user" value="{{ auth()->user()->id_user }}">
+									<input type="hidden" name="id_buku" value="{{ $books->id_buku }}">
+									<button type="submit" class="btn btn-danger">Remove from Collection</button>
+								</form>
+							@else
 								
-								<a class="button primary-btn" href="#">Add to Cart</a>
-							</div>
+								<form action="{{ route('koleksi.store') }}" method="post">
+									@csrf
+									<input type="hidden" name="id_user" value="{{ auth()->user()->id_user }}">
+									<input type="hidden" name="id_buku" value="{{ $books->id_buku }}">
+									<button type="submit" class="btn btn-primary"> Add to Collection</button>
+								</form>
+							@endif
+								
+							
 							
 						</div>
 					</div>
@@ -110,106 +125,68 @@
 									<div class="col-6-12">
 										<div class="box_total">
 											<h5>Overall</h5>
-											<h4>4.0</h4>
-											<h6>(03 Reviews)</h6>
+											<h4>{{ number_format($books->rating_avg_rating) }}</h4>
+											<h6>({{ $books->rating_count }} Reviews)</h6>
 										</div>
 									</div>
 									
 								</div>
-								<div class="review_list">
-									<div class="review_item">
-										<div class="media">
-											<div class="d-flex">
-												<img src="img/product/review-1.png" alt="" />
+								@foreach ($books->rating as $rating)
+									
+									<div class="review_list">
+										<div class="review_item">
+											<div class="media">
+												<div class="d-flex">
+													<img src="img/product/review-1.png" alt="" />
+												</div>
+												<div class="media-body">
+													<h4>{{ $rating->user->name }}</h4>
+													<i class="fa fa-star"></i> <span>{{ $rating->rating }}</span>
+													
+												</div>
 											</div>
-											<div class="media-body">
-												<h4>Blake Ruiz</h4>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-											</div>
+											<p>
+												{{ $rating->ulasan }}
+											</p>
 										</div>
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-											commodo
-										</p>
 									</div>
-									<div class="review_item">
-										<div class="media">
-											<div class="d-flex">
-												<img src="img/product/review-2.png" alt="" />
-											</div>
-											<div class="media-body">
-												<h4>Blake Ruiz</h4>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-											</div>
-										</div>
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-											commodo
-										</p>
-									</div>
-									<div class="review_item">
-										<div class="media">
-											<div class="d-flex">
-												<img src="img/product/review-3.png" alt="" />
-											</div>
-											<div class="media-body">
-												<h4>Blake Ruiz</h4>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-											</div>
-										</div>
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-											commodo
-										</p>
-									</div>
-								</div>
+								@endforeach
+									
 							</div>
 							<div class="col-lg-6">
 								<div class="review_box">
 									<h4>Add a Review</h4>
 									
 									
-									<form action="#/" class="form-contact form-review mt-3">
+									<form action="{{ route('rating.store') }}" method="POST" class="form-contact form-review mt-3">
+										@csrf
+										@if ($message = Session::get('error'))
+										<div class="alert alert-success">
+											<p>{{ $message }}</p>
+										</div>
+										@endif
                                         <div class="form-group">
+											<input type="hidden" name="id_user" value="{{ auth()->user()->id_user }}">
+											<input type="hidden" name="id_buku" value="{{ $books->id_buku }}">
                                             <div class="rating-css">
                                                 <div class="star-icon">
-                                                    <input type="radio" value="1" name="product_rating" checked id="rating1">
+                                                    <input type="radio" value="1" name="rating" checked id="rating1">
                                                     <label for="rating1" class="fa fa-star"></label>
-                                                    <input type="radio" value="2" name="product_rating" id="rating2">
+                                                    <input type="radio" value="2" name="rating" id="rating2">
                                                     <label for="rating2" class="fa fa-star"></label>
-                                                    <input type="radio" value="3" name="product_rating" id="rating3">
+                                                    <input type="radio" value="3" name="rating" id="rating3">
                                                     <label for="rating3" class="fa fa-star"></label>
-                                                    <input type="radio" value="4" name="product_rating" id="rating4">
+                                                    <input type="radio" value="4" name="rating" id="rating4">
                                                     <label for="rating4" class="fa fa-star"></label>
-                                                    <input type="radio" value="5" name="product_rating" id="rating5">
+                                                    <input type="radio" value="5" name="rating" id="rating5">
                                                     <label for="rating5" class="fa fa-star"></label>
                                                 </div>
                                             </div>
                                         </div>
 										<div class="form-group">
-											<input class="form-control" name="name" type="text" placeholder="Enter your name" required />
+											<input class="form-control" name="ulasan" id="ulasan" type="text" placeholder="Enter your name" required />
 										</div>
-										<div class="form-group">
-											<input class="form-control" name="email" type="email" placeholder="Enter email address" required />
-										</div>
-										<div class="form-group">
-											<input class="form-control" name="subject" type="text" placeholder="Enter Subject" />
-										</div>
-										<div class="form-group">
-											<textarea class="form-control different-control w-100" name="textarea" id="textarea" cols="30" rows="5" placeholder="Enter Message"></textarea>
-										</div>
+										
 										<div class="form-group text-center text-md-right mt-3">
 											<button type="submit" class="button button--active button-review">Submit Now</button>
 										</div>

@@ -46,13 +46,7 @@
                                     <td>{{ $item->role }}</td>
 
                                     <td>
-                                        <a href='' class="btn btn-success btn-sm" title="Edit"><i
-                                                class="bi bi-eye"></i>
-                                        </a>
-
-                                        <a href='' class="btn btn-warning btn-sm" title="Edit"><i
-                                                class="bi bi-pencil-square"></i>
-                                        </a>
+                                        
                                         <form action="" class="d-inline" method=""
                                             onsubmit="return confirm('Yakin akan menghapus data ini?')">
                                             @csrf

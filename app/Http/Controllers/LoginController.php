@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -70,11 +71,26 @@ class LoginController extends Controller
         ->paginate(5);
         return view('user.index', compact('data'));
     }
-    public function petugas()
+    public function change_password()
     {
-        $data = User::orderBy('id_user', 'asc')
-        ->where('role', 'staff')
-        ->paginate(5);
-        return view('petugas.index', compact('data'));
+        return view('user.password');
     }
+    public function update_password(Request $request)
+    {
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed'
+        ]);
+
+        if(!Hash::check($request->old_password, auth()->user()->password)){
+            return back()->with('error', 'Tidak sama');
+        }
+
+        User::where('id_user', auth()->user()->id_user)->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+        return redirect()->to('/')->with('status', 'success');
+    }
+   
+    
 }

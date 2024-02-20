@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\buku;
+use App\Models\koleksi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class BukuController extends Controller
@@ -146,9 +148,31 @@ class BukuController extends Controller
     }
     public function detailbook($id)
     {
-        $books = buku::where('id_buku', $id)
+        $books = buku::with(['rating', 'rating.user'])
+        ->where('id_buku', $id)
         ->where('status', 'publish')
+        ->withAvg('rating', 'rating')
+        ->withCount('rating')
         ->firstOrFail();
-        return view('user.detail', compact('books'));
+        $koleksi = koleksi::where('id_user', Auth::user()->id_user)
+        ->where('id_buku', $books->id_buku)
+        ->exists();
+        return view('user.detail', compact('books', 'koleksi'));
+    }
+    public function fiksi()
+    {
+        $books = buku::where('status', 'publish')
+        ->where('kategori', 'fiksi')
+        ->get();
+        return view('user.fiksi', compact('books'));
+
+    }
+    public function non()
+    {
+        $books = buku::where('status', 'publish')
+        ->where('kategori', 'non')
+        ->get();
+        return view('user.non-fiksi', compact('books'));
+
     }
 }

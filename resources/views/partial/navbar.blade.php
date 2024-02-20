@@ -71,7 +71,8 @@
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="{{ route('change.password') }}"><i class="icon-mid bi bi-gear me-2"></i> 
+              Change Password</a></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>

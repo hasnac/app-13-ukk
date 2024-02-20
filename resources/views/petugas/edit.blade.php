@@ -29,7 +29,7 @@
     </div>
 
     <!-- // Basic multiple Column Form section start -->
-    <section id="multiple-column-form">b
+    <section id="multiple-column-form">
         <div class="row match-height">
             <div class="col-12">
                 <div class="card">
@@ -39,21 +39,21 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form action="{{ route('buku.update', $books->id_buku) }}" method='POST' enctype="multipart/form-data" class="form" data-parsley-validate>
+                            <form action="{{ route('petugas.update', $user->id_user) }}" method='POST' enctype="multipart/form-data" class="form" data-parsley-validate>
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="form-group mandatory">
-                                            <label for="first-name-column" class="form-label">Judul</label>
+                                            <label for="first-name-column" class="form-label">Name</label>
                                             <input
                                                 type="text"
-                                                id="judul"
+                                                id="name"
                                                 class="form-control"
                                                 placeholder="First Name"
-                                                name="judul"
+                                                name="name"
                                                 data-parsley-required="true"
-                                                value="{{ old('judul', $books->judul) }}"
+                                                value="{{ old('name', $user->name) }}"
                                             />
                                         </div>
                                     </div>
@@ -61,127 +61,64 @@
                                     
                                     <div class="col-md-12 col-12">
                                         <div class="form-group mandatory">
-                                            <label for="first-name-column" class="form-label">Penulis</label>
+                                            <label for="first-name-column" class="form-label">username</label>
                                             <input
                                                 type="text"
-                                                id="penulis"
+                                                id="username"
                                                 class="form-control"
                                                 placeholder="First Name"
-                                                name="penulis"
+                                                name="username"
                                                 data-parsley-required="true"
-                                                value="{{ old('penulis', $books->penulis) }}"
+                                                value="{{ old('username', $user->username) }}"
                                             />
                                         </div>
                                     </div>
-                                    <div class="col-md-12 col-12">
-                                        <div class="form-group mandatory">
-                                            <label for="first-name-column" class="form-label">Penerbit</label>
-                                            <input
-                                                type="text"
-                                                id="penerbit"
-                                                class="form-control"
-                                                placeholder="First Name"
-                                                name="penerbit"
-                                                data-parsley-required="true"
-                                                value="{{ old('penerbit', $books->penerbit) }}"
-                                            />
-                                        </div>
-                                    </div>
+                                    
                                     <div class="col-md-12 col-12">
                                         <div class="form-group mandatory">
                                             <label for="first-name-column" class="form-label">Tahun terbit</label>
                                             <input
                                                 type="text"
-                                                id="tahunterbit"
+                                                id="telfon"
                                                 class="form-control"
                                                 placeholder="First Name"
-                                                name="tahunterbit"
+                                                name="telfon"
                                                 data-parsley-required="true"
-                                                value="{{ old('tahunterbit', $books->tahunterbit) }}"
+                                                value="{{ old('telfon', $user->telfon) }}"
                                             />
                                         </div>
                                     </div>
-                                    <div class="col-md-12 col-12">
-                                        <div class="form-group">
-                                            <label for="picture" class="form-label">Picture</label>
-                                                {{-- <img src="" alt=""
-                                                    class="img-preview img-fluid mb-3 col-sm-10 d-block"
-                                                    style="width: 450px; height: 280px;">
-                                                <input type="hidden" name="oldImage" multiple value="1" {{ ($site->select_values=="1")? "selected" : "" }}> --}}
-                                           
-                                                <img class="img-preview img-fluid mb-3 col-sm-10 d-block"
-                                                    style="width: 450px; height: 280px;">
-                                           
-                                            <input class="form-control" type="file" id="gambar" name="gambar" 
-                                            onchange="previewImage()">
-                                        </div>
-                                    </div>
+                                    
                                     <div class="col-md-12 col-12">
                                         
-                                        <label for="picture" class="form-label">Deskripsi</label>
+                                        <label for="picture" class="form-label">Alamat</label>
                                         
                                         <div class="form-group with-title mb-3">
-                                            <textarea class="form-control" id="deskripsi" name="deskripsi"  rows="3">{{ old('deskripsi', $books->deskripsi) }}</textarea>
+                                            <textarea class="form-control" id="alamat" name="alamat"  rows="3">{{ old('alamat', $user->alamat) }}</textarea>
                                             <label>Your Content</label>
                                         </div>
                                         
                                         
                                     </div>
-                                    <div class="col-md-12 col-12">
-                                        <div class="form-group mandatory">
-                                            <label for="first-name-column" class="form-label">Stok</label>
-                                            <input
-                                                type="number"
-                                                id="stok"
-                                                class="form-control"
-                                                placeholder="First Name"
-                                                name="stok"
-                                                data-parsley-required="true"
-                                                value="{{ old('stok', $books->stok) }}"
-                                            />
-                                        </div>
-                                    </div>
+                                    
                                     <div class="col-md-12 col-12">
                                         <h6>Input group append</h6>
                                         <div class="input-group mb-3">
-                                            <select class="form-select" id="kategori" name="kategori">
+                                            <select class="form-select" id="role" name="role">
                                                 <option selected>Open this select menu</option>
                                                     
-                                                    <option value="fiksi" {{ ($books->kategori=="fiksi")? "selected" : "" }}>
-                                                        Fiksi
+                                                    <option value="admin" {{ ($user->role=="admin")? "selected" : "" }}>
+                                                        Admin
                                                     </option>
-                                                    <option value="non" {{ ($books->kategori=="non")? "selected" : "" }}>
-                                                        Non Fiksi
+                                                    <option value="staff" {{ ($user->role=="staff")? "selected" : "" }}>
+                                                        Staff
                                                     </option>
                                                 
                                             </select>
-                                            <label class="input-group-text" for="kategori">Kategori</label>
+                                            <label class="input-group-text" for="role">Kategori</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-12 col-12">
-                                        
-                                        <ul class="list-unstyled mb-0">
-                                            <li class="d-inline-block me-2 mb-1">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="status" id="status" value="draft"  {{ ($books->status=="draft")? "checked" : "" }}  >
-                                                    <label class="form-check-label" for="status">
-                                                        Draft
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li class="d-inline-block me-2 mb-1">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="status" id="status" value="publish"  {{ ($books->status=="publish")? "checked" : "" }} >
-                                                    <label class="form-check-label" for="status">
-                                                        Publish
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            
-                                        </ul>
-                                        
-                                        
-                                    </div>                          
+                                                             
                                 </div>  
                                 <div class="row">
                                     <div class="col-12 d-flex justify-content-end">

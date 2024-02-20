@@ -8,9 +8,12 @@
                     <h1 class="display-4 text-white mb-4 animated slideInRight">Book's List</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center justify-content-lg-start mb-0">
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">Our Projects</li>
+                            <li class="breadcrumb-item"><a class="text-white" href="{{ url('/') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="{{ url('/listbook') }}">Book</a></li>
+                            @if (auth()->user()->role == 'user')
+                                
+                            <li class="breadcrumb-item"><a class="text-white" href="{{ url('/koleksi') }}">Collection</a></li>
+                            @endif
                         </ol>
                     </nav>
                 </div>
@@ -170,7 +173,7 @@
 									
 									<form action="{{ route('rating.store') }}" method="POST" class="form-contact form-review mt-3">
 										@csrf
-										@if ($message = Session::get('error'))
+										@if ($message = Session::get('eror'))
 										<div class="alert alert-danger">
 											<p>{{ $message }}</p>
 										</div>

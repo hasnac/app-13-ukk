@@ -31,7 +31,7 @@ class RatingController extends Controller
         $item = rating::where('id_user', $request->input('id_user'))->where('id_buku', $request->input('id_buku'))->first();
         if($item){
             $message = 'Kamu sudah pernah rating';
-            return redirect()->back()->with('error', $message);
+            return redirect()->back()->with('eror', $message);
         }
        
         $request->validate([

@@ -165,18 +165,30 @@ class BukuController extends Controller
         ->exists();
         return view('user.detail', compact('books', 'koleksi'));
     }
-    public function fiksi()
+    public function fiksi(Request $request)
     {
+        $search = $request->search;
         $books = buku::where('status', 'publish')
         ->where('kategori', 'fiksi')
+        ->when(strlen($search), function ($query) use ($search){
+            $query->where('judul','like',"%" . $search . "%")
+            ->orWhere('kategori','like',"%" . $search . "%")
+            ->orWhere('penulis','like',"%" . $search . "%");
+        })
         ->get();
         return view('user.fiksi', compact('books'));
 
     }
-    public function non()
+    public function non(Request $request)
     {
+        $search = $request->search;
         $books = buku::where('status', 'publish')
         ->where('kategori', 'non')
+        ->when(strlen($search), function ($query) use ($search){
+            $query->where('judul','like',"%" . $search . "%")
+            ->orWhere('kategori','like',"%" . $search . "%")
+            ->orWhere('penulis','like',"%" . $search . "%");
+        })
         ->get();
         return view('user.non-fiksi', compact('books'));
 

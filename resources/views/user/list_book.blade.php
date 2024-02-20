@@ -8,9 +8,12 @@
                     <h1 class="display-4 text-white mb-4 animated slideInRight">Book's List</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center justify-content-lg-start mb-0">
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">Our Projects</li>
+                            <li class="breadcrumb-item"><a class="text-white" href="{{ url('/') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="{{ url('/listbook') }}">Book</a></li>
+                            @if (auth()->user()->role == 'user')
+                                
+                            <li class="breadcrumb-item"><a class="text-white" href="{{ url('/koleksi') }}">Collection</a></li>
+                            @endif
                         </ol>
                     </nav>
                 </div>
@@ -24,7 +27,7 @@
     <div class="container-fluid bg-light py-5">
         <div class="container ">
             {{-- Search  --}}
-            <div class="coba position-relative w-100 mt-3 mb-2">
+            <div class="coba position-relative  mt-3 mb-2">
                 <form action="{{ route('listbook') }}" method="get">
                     <input name="search" class="form-control  rounded-pill w-100 ps-4 pe-5" type="text"
                         placeholder="Search your book..." style="height: 48px;">
@@ -32,7 +35,7 @@
                             class="bi bi-search text-primary fs-4"></i></button>
                 </form>
             </div>
-            <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
+            <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" >
                 <div class="product_description_area">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
@@ -47,7 +50,7 @@
                         </li>
                     </ul>
                 </div>
-                <h1 class="mb-4">Explore Your Fav Books</h1>
+                <h1>Explore Your Fav Books</h1>
             </div>
             <div class="row g-4">
                     <div class="col-md-12">

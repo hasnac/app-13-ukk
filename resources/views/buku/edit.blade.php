@@ -109,8 +109,8 @@
                                                     style="width: 450px; height: 280px;">
                                                 <input type="hidden" name="oldImage" multiple value="1" {{ ($site->select_values=="1")? "selected" : "" }}> --}}
                                            
-                                                <img class="img-preview img-fluid mb-3 col-sm-10 d-block"
-                                                    style="width: 450px; height: 280px;">
+                                                <img class="img-preview img-fluid mb-3 col-sm-10 d-block" src="{{ asset('storage/books/'.$books->gambar) }}"
+                                                    style="width: 100px;">
                                            
                                             <input class="form-control" type="file" id="gambar" name="gambar" 
                                             onchange="previewImage()">

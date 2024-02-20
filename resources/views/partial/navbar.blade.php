@@ -60,12 +60,20 @@
         <li class="nav-item">
           <a class="nav-link {{ Request::is('listbook') ? 'active' : '' }}" href="{{ url('listbook') }}">Books</a>
         </li>
-        @if (auth()->user()->role == 'user')
-            
+        
+        {{-- @if (auth()->user()->role == 'user' ?? false && Auth::check())   --}}
+        {{-- @endif --}}
+        
+        @if (Auth::check() && Auth::user()->role == 'user')
         <li class="nav-item">
           <a class="nav-link {{ Request::is('koleksi') ? 'active' : '' }}" href="{{ url('koleksi') }}">Collection</a>
         </li>
+            
         @endif
+
+        
+          
+        
         @if (auth()->user())
             
         <li class="nav-item dropdown">

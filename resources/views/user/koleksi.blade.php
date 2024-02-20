@@ -7,11 +7,14 @@
                 <div class="col-lg-4 align-self-center text-center text-lg-start mb-lg-5">
                     <h1 class=" text-white mb-4 animated slideInRight">My Collection</h1>
                     <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center justify-content-lg-start mb-0">
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">Our Projects</li>
-                        </ol>
+                      <ol class="breadcrumb justify-content-center justify-content-lg-start mb-0">
+                        <li class="breadcrumb-item"><a class="text-white" href="{{ url('/') }}">Home</a></li>
+                        <li class="breadcrumb-item"><a class="text-white" href="{{ url('/listbook') }}">Book</a></li>
+                        @if (auth()->user()->role == 'user')
+                            
+                        <li class="breadcrumb-item"><a class="text-white" href="{{ url('/koleksi') }}">Collection</a></li>
+                        @endif
+                    </ol>
                     </nav>
                 </div>
                 

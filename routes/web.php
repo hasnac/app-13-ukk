@@ -36,8 +36,8 @@ Route::group(['middleware'=> ['auth', 'checkrole:admin,staff']], function(){
 });
 Route::group(['middleware'=> ['auth', 'checkrole:user,admin,staff']], function(){
     Route::get('/listbook', [BukuController::class, 'listbook'])->name('listbook');
-    Route::get('listbook/fiksi', [BukuController::class, 'fiksi']);
-    Route::get('listbook/non-fiksi', [BukuController::class, 'non']);
+    Route::get('listbook/fiksi', [BukuController::class, 'fiksi'])->name('listbook.fiksi');
+    Route::get('listbook/non-fiksi', [BukuController::class, 'non'])->name('listbook.non');
     Route::resource('/koleksi', KoleksiController::class);
     Route::resource('/rating', RatingController::class);
     Route::get('listbook/detail{id}', [BukuController::class, 'detailbook']);

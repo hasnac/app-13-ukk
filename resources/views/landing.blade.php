@@ -62,7 +62,7 @@
             <div class="row g-5">
                 <div class="col-lg-6 align-self-center mb-md-5 pb-md-5 wow fadeIn" data-wow-delay="0.3s">
                     <div class="btn btn-sm border rounded-pill text-white px-3 mb-3">Why Choose Us</div>
-                    <h1 class="text-white mb-4">We're Best in AI Industry with 10 Years of Experience</h1>
+                    <h1 class="text-white mb-4">We're Best in Digital Library</h1>
                     <p class="text-light mb-4">Aliqu diam amet diam et eos labore. Clita erat ipsum et lorem et sit, sed
                         stet no labore lorem sit. Sanctus clita duo justo et tempor</p>
                     <div class="d-flex align-items-center text-white mb-3">
@@ -88,8 +88,8 @@
                             <div class="d-flex rounded p-3" style="background: rgba(256, 256, 256, 0.1);">
                                 <i class="fa fa-users fa-3x text-white"></i>
                                 <div class="ms-3">
-                                    <h2 class="text-white mb-0" data-toggle="counter-up">9999</h2>
-                                    <p class="text-white mb-0">Happy Clients</p>
+                                    <h2 class="text-white mb-0" data-toggle="counter-up">{{ $book }}</h2>
+                                    <p class="text-white mb-0">Our Books</p>
                                 </div>
                             </div>
                         </div>
@@ -97,8 +97,8 @@
                             <div class="d-flex rounded p-3" style="background: rgba(256, 256, 256, 0.1);">
                                 <i class="fa fa-check fa-3x text-white"></i>
                                 <div class="ms-3">
-                                    <h2 class="text-white mb-0" data-toggle="counter-up">9999</h2>
-                                    <p class="text-white mb-0">Project Complete</p>
+                                    <h2 class="text-white mb-0" data-toggle="counter-up">{{ $member }}</h2>
+                                    <p class="text-white mb-0">Member</p>
                                 </div>
                             </div>
                         </div>
@@ -111,7 +111,7 @@
         </div>
     </div>
     <!-- Feature End -->
-    <h4 class="pt-3 text-center ">Our Location</h4>
+    <h1 class="pt-3 text-center mt-3">Our Location</h1>
     <div class="container">
         <div class="row mb-4" style="margin-top: 15vh;">
             <div class="col-12 mx-auto">

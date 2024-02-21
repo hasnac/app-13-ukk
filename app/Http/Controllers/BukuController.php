@@ -16,7 +16,7 @@ class BukuController extends Controller
     public function index()
     {
         $books = buku::orderBy('id_buku', 'asc')
-        ->paginate(5);
+        ->get();
         return view('buku.index', compact('books'));
     }
 

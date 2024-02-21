@@ -14,12 +14,13 @@ class ViewController extends Controller
         $member = User::where('role', 'user')->count();
         $search = $request->search;
         $books = buku::where('status', 'publish')
+        ->latest()
         ->when(strlen($search), function ($query) use ($search){
             $query->where('judul','like',"%" . $search . "%")
             ->orWhere('kategori','like',"%" . $search . "%")
             ->orWhere('penulis','like',"%" . $search . "%");
         })
-        ->get();
+        ->paginate(4);
         return view('landing', compact('books', 'book', 'member'));
         
     }

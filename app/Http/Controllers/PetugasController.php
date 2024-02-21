@@ -14,7 +14,7 @@ class PetugasController extends Controller
     {
         $data = User::orderBy('id_user', 'asc')
         ->where('role', 'staff')
-        ->paginate(5);
+        ->get();
         return view('petugas.index', compact('data'));
     }
 

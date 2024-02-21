@@ -30,7 +30,7 @@
 
               <div class="card">
     
-                  <table class="table">
+                  <table class="table" >
                     <thead>
                       <tr>
                         <th scope="col">#</th>
@@ -41,11 +41,11 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php $i= $data->firstItem();?>
+                      
                       @foreach ($data as $item)
                           
                       <tr>
-                        <th scope="row">{{ $i }}</th>
+                        <th scope="row">{{ $loop->iteration }}</th>
                         <td>
                           <img src="{{ Storage::url('public/books/' . $item->buku->gambar) }}" style="width: 100px" alt="" srcset="">
                         </td>
@@ -62,7 +62,7 @@
                         </td>
                       </tr>
                       @endforeach
-                      <?php $i++ ?>
+                      
                     </tbody>
                   </table>
               </div>

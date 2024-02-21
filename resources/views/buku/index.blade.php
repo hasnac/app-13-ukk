@@ -45,7 +45,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $i = $books->firstItem(); ?>
+                        <?php $i = 1?>
                         @foreach ($books as $item)
                             
                         <tr>
@@ -79,23 +79,24 @@
                         
                     </tbody>
                 </table>
-                {{ $books->links() }}
+                
             </div>
         </div>
     </section>
 </div>
 @endsection
 @section('script')
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
-    <script src="{{ asset('assetsadmin/static/js/components/dark.js') }}"></script>
-    <script src="{{ asset('assetsadmin/extensions/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('assetsad/static/js/components/dark.js') }}"></script>
+    <script src="{{ asset('assetsad/extensions/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+    
+    <script src="{{ asset('assetsad/static/js/initTheme.js') }}"></script>
+
+    <script src="{{ asset('assetsad/compiled/js/app.js') }}"></script>
 
 
-    <script src="{{ asset('assetsadmin/compiled/js/app.js') }}"></script>
 
-
-
-    <script src="{{ asset('assetsadmin/extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
-    <script src="{{ asset('assetsadmin/static/js/pages/simple-datatables.js') }}"></script>
+    <script src="{{ asset('assetsad/extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
+    <script src="{{ asset('assetsad/static/js/pages/simple-datatables.js') }}"></script>
 @endsection

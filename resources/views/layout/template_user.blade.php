@@ -36,6 +36,12 @@
 		<link rel="stylesheet" href="{{ asset('assetsus/vendors/nice-select/nice-select.css') }}" />
 		<link rel="stylesheet" href="{{ asset('assetsus/vendors/owl-carousel/owl.theme.default.min.css') }}" />
 		<link rel="stylesheet" href="{{ asset('assetsus/vendors/owl-carousel/owl.carousel.min.css') }}" />
+    {{-- mazzer --}}
+    {{-- <link rel="stylesheet" href="{{ asset('assetsad/extensions/simple-datatables/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('assetsad/compiled/css/table-datatable.css') }}">
+        <link rel="stylesheet" href="{{ asset('assetsad/compiled/css/app.css') }}"> --}}
+
+        
 </head>
 
 <body>

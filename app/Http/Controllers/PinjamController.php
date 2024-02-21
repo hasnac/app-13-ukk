@@ -16,7 +16,7 @@ class PinjamController extends Controller
     {
         $data = peminjaman::with(['user', 'buku'])
         ->orderBy('tanggal_pinjam', 'asc')
-        ->paginate(5);
+        ->get();
         return view('pinjam.index', compact('data'));
     }
 

@@ -16,7 +16,7 @@ class KoleksiController extends Controller
         $data = koleksi::with(['user','buku'])
         ->where('id_user', Auth::user()->id_user)
         ->orderBy('id_koleksi', 'asc')
-        ->paginate(5);
+        ->get();
         return view('user.koleksi', compact('data'));
     }
 
